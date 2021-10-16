@@ -7,15 +7,12 @@ const colors = [
     "lightsteelblue"
 ]
 
-const width = 500;
-const height = 10;
-
-const scale = d3.scaleLinear([0, width]).domain([0, 100]);
-
-export function D3Wrapper({data}: {data: {value: number, cumulativeValue: number}[]}) {
+export function StackedBar({data, width = 500}: {width?: number, data: {value: number, cumulativeValue: number}[]}) {
     const ref = useRef(null);
-
+    const height = 10;
+    
     useEffect(() => {   
+        const scale = d3.scaleLinear([0, width]).domain([0, 100]);
         const svg = d3.select(ref.current);        
 
         const rects = svg
@@ -37,7 +34,7 @@ export function D3Wrapper({data}: {data: {value: number, cumulativeValue: number
             .attr("x", (d) => scale(d.cumulativeValue - d.value));
         
         rects.exit().remove();
-    }, [ref, data]);
+    }, [ref, data, width]);
 
     return <svg width={width} height={height} ref={ref} />;
 }

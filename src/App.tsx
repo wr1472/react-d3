@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react';
 
 import {css} from "@emotion/css";
 
-import {D3Wrapper} from './D3Wrapper';
+import {StackedBar} from './StackedBar';
 
 const updateInterval = 5000;
 const sum = (prev: number, curr: number) => prev + curr;
@@ -21,11 +21,11 @@ function App() {
     ]);
 
     useEffect(() => {
-        const interval = setInterval(
-            () => setData(data
+        const interval = setInterval(() =>
+            setData(data
                 .map(generateData)
                 .map(toPercentage)
-                .map(toDatapoint)),
+                .map(toDatapoint)), 
             updateInterval);
     
         return () => clearInterval(interval);
@@ -33,7 +33,7 @@ function App() {
 
     return <>
         <div className={css({display: "flex", justifyContent: "center", alignItems: "end", height: "calc(50vh)"})}>
-            <D3Wrapper data={data} />
+                <StackedBar data={data} />
         </div>
         <div className={css({textAlign: "center", marginTop: 8, fontStyle: "italic"})}>d3 horizontal stacked bar</div>
     </>;
