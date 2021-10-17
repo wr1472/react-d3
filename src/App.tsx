@@ -33,7 +33,7 @@ function App() {
 
     return <>
         <div className={css({display: "flex", justifyContent: "center", alignItems: "end", height: "calc(50vh)"})}>
-                <StackedBar data={data} />
+            <StackedBar data={data} />
         </div>
         <div className={css({textAlign: "center", marginTop: 8, fontStyle: "italic"})}>d3 horizontal stacked bar</div>
     </>;
